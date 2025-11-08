@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Wisata Daerahku</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="flex flex-col min-h-screen bg-gray-50 text-gray-800">
+
+
+  <header class="bg-blue-600 text-white shadow">
+    <nav class="container mx-auto flex justify-between items-center p-4">
+      <h1 class="text-2xl font-bold">🌴 Wisata Daerah Lombok</h1>
+      <ul class="hidden md:flex space-x-6">
+        <li><a href="index.html" class="hover:text-yellow-300">Beranda</a></li>
+        <li><a href="destinasi.html" class="hover:text-yellow-300">Destinasi</a></li>
+        <li><a href="galeri.html" class="hover:text-yellow-300">Galeri</a></li>
+        <li><a href="kontak.html" class="hover:text-yellow-300">Kontak</a></li>
+      </ul>
+      <button id="menuBtn" class="md:hidden text-white focus:outline-none">☰</button>
+    </nav>
+    <div id="mobileMenu" class="md:hidden hidden bg-blue-700 p-3 space-y-2">
+      <a href="index.html" class="block text-white">Beranda</a>
+      <a href="destinasi.html" class="block text-white">Destinasi</a>
+      <a href="galeri.html" class="block text-white">Galeri</a>
+      <a href="kontak.html" class="block text-white">Kontak</a>
+    </div>
+  </header>
+
+ <section class="container mx-auto mt-8">
+    <div class="relative">
+        <img src="img/pantai bolam tanjung ringgit.jpg" alt="benner wisata " class="w-full rounded ig shadow-md">
+        <div class="absolute inset-0 flex items-center justify-center text-white text-4x1 font-bold  bg-opac">
+               <P> WELLCOME TO WISATA DAERAH LOMBOK</P>
+               
+          
+        </div>
+         
+
+    </div>
+
+ </section>
+
+  <section class="container mx-auto py-12 px-4 grid md:grid-cols-3 gap-8 text-center">
+    <div class="bg-white rounded-2xl p-6 shadow hover:shadow-lg transition">
+      <img src="img/image.png" alt="Alam" class="w-full h-48 object-cover rounded-xl mb-4">
+      <h3 class="text-xl font-semibold text-blue-700 mb-2">Alam</h3>
+      <p>Menikmati keindahan pegunungan, pantai, dan air terjun yang memukau.</p>
+    </div>
+    <div class="bg-white rounded-2xl p-6 shadow hover:shadow-lg transition">
+      <img src="img/tradisi 2.jpg" alt="Budaya" class="w-full h-48 object-cover rounded-xl mb-4">
+      <h3 class="text-xl font-semibold text-blue-700 mb-2">Budaya</h3>
+      <p>Menyaksikan tradisi, seni, dan adat istiadat yang khas dan berwarna.</p>
+    </div>
+    <div class="bg-white rounded-2xl p-6 shadow hover:shadow-lg transition">
+      <img src="img/kuliner.jpg" alt="Kuliner" class="w-full h-48 object-cover rounded-xl mb-4">
+      <h3 class="text-xl font-semibold text-blue-700 mb-2">Kuliner</h3>
+      <p>Menikmati cita rasa kuliner khas yang menggugah selera.</p>
+    </div>
+  </section>
+
+  <footer class="bg-blue-600 text-white text-center p-4">
+    <p>© 2025 Wisata Daerah Lombok hak cipta</p>
+    <div class="mt-2 space-x-6">
+        <a href="#" class="hover:text-gray-300 transition">facebook</a>
+        <a href="#" class="hover:text-gray-300 transition">twitter</a>
+        <a href="#" class="hover:text-gray-300 transition">instagram</a>
+        
+        
+
+
+    </div>
+  </footer>
+
+  <script>
+    const menuBtn = document.getElementById('menuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    menuBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+  </script>
+
+</body>
+</html>

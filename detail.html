@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Destinasi Wisata Lombok</title>
+
+  <!-- Bootstrap + Tailwind -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    body {
+      scroll-behavior: smooth;
+      background-color: #f8fafc;
+    }
+    .scroll-anim {
+      opacity: 0;
+      transform: translateY(60px);
+      transition: all 0.8s ease;
+    }
+    .scroll-anim.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .hover-float {
+      transition: transform 0.3s ease;
+    }
+    .hover-float:hover {
+      transform: translateY(-6px) scale(1.03);
+    }
+    iframe {
+      border-radius: 12px;
+    }
+  </style>
+</head>
+
+<body class="text-gray-800 d-flex flex-column min-vh-100">
+
+  <!-- Header -->
+  <header class="bg-blue-600 text-white shadow">
+    <div class="container py-3 d-flex justify-content-between align-items-center">
+      <h1 class="fs-3 fw-bold">🏝️ Wisata Lombok</h1>
+      <nav>
+        <a href="index.html" class="text-white me-3">Beranda</a>
+        <a href="destinasi.html" class="text-white me-3">Destinasi</a>
+        <a href="galeri.html" class="text-white me-3">Galeri</a>
+        <a href="kontak.html" class="text-white">Kontak</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Konten -->
+  <main class="container py-5 flex-grow">
+    <div id="destinasi-container"></div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-blue-600 text-white text-center py-3 mt-auto">
+    <p>© 2025 Wisata Daerah Lombok</p>
+  </footer>
+
+  <!-- Script -->
+  <script>
+    // ===== Data Destinasi =====
+    const destinasiData = [
+      {
+        nama: "Pantai Pink",
+        lokasi: "Lombok Timur, Nusa Tenggara Barat",
+        deskripsi: "Pantai dengan pasir berwarna merah muda yang sangat langka. Air lautnya jernih dan cocok untuk snorkeling.",
+        gambar: "imgimg/download (1).jpg",
+      
+        maps: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3948.380357940808!2d116.57066057409345!3d-8.834853291367642!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dcde830b7f6b65b%3A0xf9e3db5b9a29d01a!2sPantai%20Tangsi%20(Pink%20Beach)!5e0!3m2!1sid!2sid!4v1699099999999!5m2!1sid!2sid"
+      },
+      {
+        nama: "Gili Trawangan",
+        lokasi: "Lombok Utara, Nusa Tenggara Barat",
+        deskripsi: "Pulau tropis kecil dengan pantai putih dan air biru jernih. Terkenal dengan kehidupan malam dan spot diving.",
+        gambar: "img/gili-trawangan.png",
+        maps: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3949.307563201607!2d116.03630637409192!3d-8.353189587787665!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dcdbf72574e5309%3A0x1e1c94857ebdcf3e!2sGili%20Trawangan!5e0!3m2!1sid!2sid!4v1699097777777!5m2!1sid!2sid"
+      },
+      {
+        nama: "Bukit Merese",
+        lokasi: "Kuta, Lombok Tengah",
+        deskripsi: "Bukit dengan panorama laut dan sunset yang menakjubkan. Cocok untuk bersantai dan berfoto di sore hari.",
+        gambar: "img/bukit-merese.png",
+        maps: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3947.054964196801!2d116.2762182740956!3d-8.90368159125758!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dcc423c7d56336b%3A0x71b5ea20bdeed2cc!2sBukit%20Merese!5e0!3m2!1sid!2sid!4v1699100000000!5m2!1sid!2sid"
+      },
+      {
+        nama: "Hutan Wisata Sesaot",
+        lokasi: "Lombok Barat, Nusa Tenggara Barat",
+        deskripsi: "Hutan alami dengan udara segar dan aliran sungai jernih. Cocok untuk piknik dan relaksasi keluarga.",
+        gambar: "img/sesaot.png",
+        maps: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3946.373094863803!2d116.18410257409615!3d-8.52297779147227!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dcc4f56e5acbfa3%3A0xe1ac7aafc0c1428b!2sHutan%20Wisata%20Sesaot!5e0!3m2!1sid!2sid!4v1699101111111!5m2!1sid!2sid"
+      },
+      {
+        nama: "Air Terjun Tiu Kelep",
+        lokasi: "Senaru, Lombok Utara",
+        deskripsi: "Air terjun megah di kaki Gunung Rinjani dengan aliran yang jernih dan suasana alam yang sejuk.",
+        gambar: "img/tiu-kelep.png",
+        maps: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3944.123617503884!2d116.40501997409807!3d-8.28654879269497!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dcdd60c0c27e7a1%3A0x9ec71a295021a8a0!2sAir%20Terjun%20Tiu%20Kelep!5e0!3m2!1sid!2sid!4v1699102222222!5m2!1sid!2sid"
+      },
+      {
+        nama: "Pantai Aan",
+        lokasi: "Lombok Tengah, Nusa Tenggara Barat",
+        deskripsi: "Pantai dengan pasir halus seperti merica dan pemandangan laut yang indah, cocok untuk bersantai.",
+        gambar: "img/pantai-aan.png",
+        maps: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3947.155512097768!2d116.29327117409551!3d-8.88649659126363!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dcc423e4c26a8cf%3A0x4f90a47ef4a0de0!2sPantai%20Aan!5e0!3m2!1sid!2sid!4v1699103333333!5m2!1sid!2sid"
+      }
+    ];
+
+    const kondisiCuaca = ["Cerah 🌤️", "Berawan ☁️", "Hujan 🌧️", "Gerimis 🌦️", "Cerah Berawan 🌞"];
+    const container = document.getElementById('destinasi-container');
+
+    destinasiData.forEach((d) => {
+      const div = document.createElement('div');
+      div.className = "row align-items-center mb-5 scroll-anim";
+      div.innerHTML = `
+    
+        <div class="col-md-6">
+          <h2 class="text-3xl font-bold text-blue-700 mb-3">${d.nama}</h2>
+          <p class="mb-3 text-gray-700">${d.deskripsi}</p>
+          <p><strong>Lokasi:</strong> ${d.lokasi}</p>
+
+          <button class="btn btn-warning text-black me-2 mt-2 btn-cuaca">Lihat Cuaca</button>
+          <span class="text-blue-700 fw-semibold info-cuaca"></span>
+
+          <div class="mt-4">
+            <iframe src="${d.maps}" width="100%" height="250" allowfullscreen="" loading="lazy"></iframe>
+          </div>
+
+          <hr class="my-4">
+
+          <h4 class="text-xl font-semibold mb-3">Estimasi Biaya Perjalanan</h4>
+          <input type="number" class="form-control jarak mb-2" placeholder="Masukkan jarak (km)">
+          <input type="number" class="form-control biaya mb-2" placeholder="Biaya transportasi/km (Rp)">
+          <button class="btn btn-primary hitung-btn">Hitung</button>
+          <p class="mt-3 fw-semibold text-green-700">Estimasi Total: <span class="hasil-biaya">Rp 0</span></p>
+        </div>
+      `;
+      container.appendChild(div);
+    });
+
+    // Animasi saat scroll
+    const scrollItems = document.querySelectorAll('.scroll-anim');
+    function checkScroll() {
+      const trigger = window.innerHeight * 0.85;
+      scrollItems.forEach(item => {
+        const top = item.getBoundingClientRect().top;
+        if (top < trigger) item.classList.add('active');
+      });
+    }
+    window.addEventListener('scroll', checkScroll);
+    checkScroll();
+
+    // Cuaca unik per destinasi
+    document.querySelectorAll('.btn-cuaca').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const random = Math.floor(Math.random() * kondisiCuaca.length);
+        const info = btn.parentElement.querySelector('.info-cuaca');
+        info.innerText = "Cuaca hari ini: " + kondisiCuaca[random];
+      });
+    });
+
+    // Kalkulator biaya
+    document.querySelectorAll('.hitung-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const box = btn.parentElement;
+        const jarak = parseFloat(box.querySelector('.jarak').value);
+        const biaya = parseFloat(box.querySelector('.biaya').value);
+        const hasil = box.querySelector('.hasil-biaya');
+        if (isNaN(jarak) || isNaN(biaya)) {
+          alert("Masukkan angka yang valid!");
+          return;
+        }
+        const total = jarak * biaya;
+        hasil.innerText = "Rp " + total.toLocaleString('id-ID');
+      });
+    });
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
